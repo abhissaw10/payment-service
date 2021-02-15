@@ -16,8 +16,9 @@ import static com.upgrad.paymentservice.constants.PaymentConstants.PAYMENT_SUCCE
 public class PaymentServiceController {
 
     @GetMapping("/v1/payments/status")
-    public ResponseEntity<PaymentResponseVO> getPaymentStatus(@RequestParam String orderId){
+    public ResponseEntity<PaymentResponseVO> getPaymentStatus(@RequestParam String orderId) throws InterruptedException {
         log.info("Payment Status for Order Id "+orderId);
+        //Thread.sleep(2000);
         return ResponseEntity.ok(PaymentResponseVO.builder()
                 .orderId(orderId)
                 .paymentStatus(PAYMENT_SUCCESS)
